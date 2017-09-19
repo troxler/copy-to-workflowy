@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Copy to Workflowy",
+  "version": "1.0",
+  "description": "Copies the current tab's title and address so that it can be pasted into Workflowy.",
+  "icons": {
+    "48": "icons/workflowy-48.png"
+  },
+  "browser_action": {
+    "default_icon": {
+      "19": "icons/workflowy-19.png",
+      "38": "icons/workflowy-38.png"
+    },
+    "default_title": "Copy to Workflowy"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "permissions": [
+    "clipboardWrite",
+    "notifications"
+  ]
+}
