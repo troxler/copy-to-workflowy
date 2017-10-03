@@ -19,7 +19,7 @@ function toOpmlAttribute(text) {
     .replace(/&/g, '&amp;amp;')
     .replace(/</g, '&amp;lt;')
     .replace(/>/g, '&amp;gt;')
-    .replace(/''/g, '&quot;')
+    .replace(/"/g, '&quot;')
     .replace(/(\n)/g, '&#10;');
 }
 
