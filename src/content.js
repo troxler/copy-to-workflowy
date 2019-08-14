@@ -7,11 +7,34 @@ function onClick() {
 
 // based on https://rawbytz.wordpress.com/clip-to-workflowy-code/
 function getWorkflowyText() {
-  const title = toOpmlAttribute(document.title);
-  const url = toOpmlAttribute(document.location.href);
+  const {
+    title,
+    url
+  } = formatBookmark(document.title, document.location.href);
   return `<opml><body>` +
     `<outline text="${title}" _note="${url}" />` +
     `</body></opml>`;
+}
+
+function formatBookmark(title, url) {
+  // handle Workflowy links
+  if (url.startsWith('https://workflowy.com/#/')) {
+    const titlePrefix = ' - WorkFlowy';
+    if (title.endsWith(titlePrefix)) {
+      title = title.substring(0, title.length - titlePrefix.length);
+    }
+    url = `>> ${url}`;
+  }
+
+  title = title.trim();
+
+  title = toOpmlAttribute(title);
+  url = toOpmlAttribute(url);
+
+  return {
+    title,
+    url
+  };
 }
 
 function toOpmlAttribute(text) {
