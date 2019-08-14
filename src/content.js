@@ -28,6 +28,13 @@ function formatBookmark(title, url) {
 
   title = title.trim();
 
+  // remove emojis
+  // TODO make this an option
+  // based on https://stackoverflow.com/questions/10992921/how-to-remove-emoji-code-using-javascript
+  title = title
+    .replace(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF])/g, '')
+    .replace(/\s+/g, ' ');
+
   title = toOpmlAttribute(title);
   url = toOpmlAttribute(url);
 
